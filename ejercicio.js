@@ -40,3 +40,27 @@ function orden(numero){
     return descuento
 }
 orden(90)
+
+//Se desea realizar la suma de los numeros pares y la suma de los numeros impares
+//(por aparte), de los numeros comprendidos desde uno hasta 578934
+
+function sumas() {
+    let sumapar = 0
+    let sumaimpar = 0
+    for (i=0; i<578935; i++){
+        if (i%2==0){
+            sumapar+=i
+        }else{
+            sumaimpar+=i
+        }
+    }
+    let resultado = (`La suma de los pares es: ${sumapar} y la de los impares son ${sumaimpar}`)
+    return resultado
+}
+
+console.log(sumas())
+
+function random(max) {
+    return Math.floor(Math.random()*max)
+}
+console.log(random(40))
