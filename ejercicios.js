@@ -60,7 +60,18 @@ function sumas() {
 
 console.log(sumas())
 
+// Obtener un numero random
+
 function random(max) {
     return Math.floor(Math.random()*max)
 }
 console.log(random(40))
+
+// Imprima la siguiente secuencia usando ciclos (1-9)
+
+let numeros = ""          // se crea la variable
+for (i=1;i<14;i++){       // se genera un for para que imprima los 9 numeros
+    numeros +=i           // se añade los numeros
+    numeros +=" "         // se añade un espacio
+    console.log(numeros)  // se imprimen los numeros
+}

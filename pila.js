@@ -48,6 +48,8 @@ class Stack{
 
 }
 
+[]
+
 const stack = new Stack();
 
 stack.push(10);
@@ -61,3 +63,36 @@ stack.pop()
 console.log(stack.peek())
 stack.clear()
 console.log(stack.peek())
+
+
+class node{
+    constructor(value){
+        this.value = value;
+        this.next = null;
+    }
+}
+class stack2{
+    constructor(){
+        this.top = null;
+        this.size = 0;
+    }
+    isEmpty(){
+        return thid.size === 0;
+    }
+    push(value){
+        const newNode = new node(value);
+        newNode.next = this.top;
+        this.top = newNode;
+        this.size++;
+    }
+    pop(){
+        if(!this.top()){
+            return "Is empty";
+        }
+        const popedvalue = this.top.value;
+        this.top = this.top.next;
+        this.size--;
+        return this.top.value;
+
+    }
+}
