@@ -1,43 +1,55 @@
+////////////////////////////////////////////
+//         TRABAJO DE CONTRASEÑAS         //
+///////////////////////////////////////////
+
+// Desarrollado por Mariana Acero Velasquez
+
 const readline = require('readline');
 
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-const longitud_minima = 1;
-const longitud_maxima = 25000;
 
 let newPassword = '';
 
 // Para verificar si una cadena es minúscula
-const minuscula = (str) => /^[a-z]+$/.test(str) && /\d/.test(str);
+const minuscula = (str) => /^[a-z]+$/.test(str) && !/\d/.test(str);
 
 
 // Acabar la función y mostrar la nueva contraseña
 const finalizar = () => {
     rl.close();
-    console.log(`Nueva contraseña generada: ${newPassword}`);
+    console.log({newPassword});
 };
 
 // Preguntas de las contraseñas
 const passwords = () => {
     rl.question("Ingrese la primera contraseña: ", (password1) => {
         rl.question("Ingrese la segunda contraseña: ", (password2) => {
-            if (password1.length !== password2.length) {
-                console.clear()
-                console.log("Las contraseñas no tienen la misma longitud");
-                passwords(); // Volver a preguntar
-            } else if ((password1.length < longitud_minima || password1.length > longitud_maxima) || (password2.length < longitud_minima || password2.length > longitud_maxima)) {
+            // if (password1.length !== password2.length) {
+            //     console.clear()
+            //     console.log("Las contraseñas no tienen la misma longitud");
+            //     passwords(); // Volver a preguntar
+            // } 
+
+            if ((password1.length < 1 || password1.length > 25000) || (password2.length < 1 || password2.length > 25000)) {
                 console.clear()
                 console.log("La contraseña debe tener más caracteres que 1 y menos que 25000");
                 passwords(); // Volver a preguntar
             } else if (!minuscula(password1) || !minuscula(password2)) {
                 console.clear()
-                console.log('Las contraseñas solo deben tener letras minúsculas.');
+                console.log('Las contraseñas solo deben tener letras minúsculas y no deben tener numeros.');
                 passwords(); // Volver a preguntar
             } else {
-                for (let i = 0; i < password1.length; i++) {
-                    newPassword += password1[i] + password2[i];
+                const longitud = Math.max(password1.length,password2.length)
+                for (i = 0; i < longitud; i++) {
+                    if(i<password1.length){
+                        newPassword+=password1[i]
+                    }
+                    if (i<password2.length){
+                        newPassword+=password2[i]
+                    }
                 }
                 finalizar();
             }
