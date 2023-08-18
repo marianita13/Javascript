@@ -25,9 +25,9 @@ class Lista{
     }
 
     prepend(dato){
-        const newNode = new Node(dato); // Se crea una variable con la informacion del nuevo nodo
-        newNode.next=this.head; // decimos que la cabeza de la pila es el nodo siguiente al nuevo
-        this.head=newNode; // convertimos el nuevo nodo en la cabeza de la pila
+        const newNodo = new Nodo(dato); // Se crea una variable con la informacion del nuevo nodo
+        newNodo.next=this.head; // decimos que la cabeza de la pila es el nodo siguiente al nuevo
+        this.head=newNodo; // convertimos el nuevo nodo en la cabeza de la pila
     }
 
     delete(dato){ //Eliminar nodos
@@ -51,8 +51,17 @@ class Lista{
     display(){ // Mostrar los datos dentro de los nodos
         let actual = this.head; // Actual será la cabeza de la pila
         while (actual){ // Mientras actual no sea nulo
-            console.log(actual.data); // Imprimira los datos dentro del nodo
+            console.log(actual.dato); // Imprimira los datos dentro del nodo
             actual = actual.next // Actualiza para que vaya al siguiente nodo
         }
     }
 }
+
+const listanueva = new Lista();
+listanueva.append(10);
+listanueva.append(20);
+listanueva.append(30);
+listanueva.append(40);
+listanueva.append(50);
+listanueva.prepend(5);
+listanueva.display()
