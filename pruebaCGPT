@@ -1,0 +1,88 @@
+class Task {
+    constructor(title, description) {
+        this.title = title;
+        this.description = description;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+class TaskList {
+    constructor() {
+        this.head = null;
+        this.tail = null;
+    }
+
+    addTask(title, description) {
+        const newTask = new Task(title, description);
+        if (!this.head) {
+            this.head = newTask;
+            this.tail = newTask;
+        } else {
+            newTask.prev = this.tail;
+            this.tail.next = newTask;
+            this.tail = newTask;
+        }
+    }
+
+    removeTask(task) {
+        if (task.prev) {
+            task.prev.next = task.next;
+        } else {
+            this.head = task.next;
+        }
+
+        if (task.next) {
+            task.next.prev = task.prev;
+        } else {
+            this.tail = task.prev;
+        }
+    }
+
+    showTasks() {
+        let currentTask = this.head;
+        while (currentTask) {
+            console.log(`Title: ${currentTask.title}\nDescription: ${currentTask.description}\n`);
+            currentTask = currentTask.next;
+        }
+    }
+}
+
+function main() {
+    const taskList = new TaskList();
+
+    while (true) {
+        console.log("1. Add Task");
+        console.log("2. Remove Task");
+        console.log("3. Show Tasks");
+        console.log("4. Exit");
+        const choice = parseInt(prompt("Select an option: "));
+
+        if (choice === 1) {
+            const title = prompt("Enter task title: ");
+            const description = prompt("Enter task description: ");
+            taskList.addTask(title, description);
+        } else if (choice === 2) {
+            const title = prompt("Enter task title to remove: ");
+            let taskToRemove = taskList.head;
+            while (taskToRemove) {
+                if (taskToRemove.title === title) {
+                    taskList.removeTask(taskToRemove);
+                    console.log(`Task '${title}' removed.`);
+                    break;
+                }
+                taskToRemove = taskToRemove.next;
+            }
+            if (!taskToRemove) {
+                console.log(`Task '${title}' not found.`);
+            }
+        } else if (choice === 3) {
+            console.log("Task List:");
+            taskList.showTasks();
+        } else if (choice === 4) {
+            break;
+        }
+    }
+}
+
+main();
