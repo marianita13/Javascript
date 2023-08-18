@@ -24,9 +24,9 @@ class LinkedList{
     }
 
     prepend(data){//Agregar dato en Cabeza
-        const newNode = new Node(data);
-        newNode.next=this.head;
-        this.head=newNode;
+        const newNode = new Node(data); // Se crea una variable con la informacion del nuevo nodo
+        newNode.next=this.head; // decimos que la cabeza de la pila es el nodo siguiente al nuevo
+        this.head=newNode; // convertimos el nuevo nodo en la cabeza de la pila
     }
 
     delete(data){//Eliminar dato
@@ -59,8 +59,8 @@ class LinkedList{
 }
 const lista = new LinkedList();
 lista.append(1);
-lista.prepend(2);
+lista.append(7)
+lista.prepend(4);
 //lista.delete(2);
 lista.delete(1);
-
 lista.display();
